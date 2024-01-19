@@ -66,8 +66,17 @@ public class Projectile : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		//If bullet collides with "Blood" tag
-		if (collision.transform.tag == "Blood") 
+        if (collision.transform.tag == "Enemy")
+        {
+            Destroy(gameObject);
+			if (collision.gameObject.GetComponent<MyEnemy>()) 
+			{
+                collision.gameObject.GetComponent<MyEnemy>().OnDead();
+            }
+        }
+
+        //If bullet collides with "Blood" tag
+        if (collision.transform.tag == "Blood") 
 		{
 			//Instantiate random impact prefab from array
 			Instantiate (bloodImpactPrefabs [Random.Range 
